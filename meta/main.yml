@@ -18,6 +18,8 @@ galaxy_info:
       versions: [all]
     - name: Ubuntu
       versions: [all]
+  cloud_platforms:
+    - VMware
   galaxy_tags:
     - vsphere
     - vcenter
