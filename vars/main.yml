@@ -1,0 +1,9 @@
+---
+# vars file for vmware_ubuntu_cloud_image
+
+static_ipv4: "{{ static_ip.ipv4 | default(lookup('dig', inventory_hostname)) }}"
+cidr: "{{ static_ip.cidr | default(default_cidr) }}"
+gateway: "{{ static_ip.gateway }}"
+dns_servers: "{{ static_ip.dns_servers | default(default_dns_servers) }}"
+
+# vim: ts=2:sw=2:noautoindent:nosmartindent

@@ -1,0 +1,73 @@
+---
+# tasks file for vmware_ubuntu_cloud_image
+
+- name: deploy OVA file
+  tags: deploy-ova
+  vmware_deploy_ovf:
+    hostname: "{{ vcenter_hostname | default(omit) }}"
+    username: "{{ vcenter_username | default(omit) }}"
+    password: "{{ vcenter_password | default(omit) }}"
+    validate_certs: "{{ vcenter_validate_certs | default(omit) }}"
+    datacenter: "{{ vmware_datacenter }}"
+    datastore: "{{ vmware_datastore }}"
+    resource_pool: "{{ vmware_resource_pool | default(omit) }}"
+    allow_duplicates: no
+    ova: "{{ ova_file }}"
+    name: "{{ vm_guestname }}"
+    properties:
+      hostname: "{{ vm_hostname }}"
+      public-keys: "{{ ssh_keys | default(omit) }}"
+    power_on: no
+  delegate_to: localhost
+
+- name: configure VM hardware
+  tags: configure-hardware
+  vmware_guest:
+    hostname: "{{ vcenter_hostname | default(omit) }}"
+    username: "{{ vcenter_username | default(omit) }}"
+    password: "{{ vcenter_password | default(omit) }}"
+    validate_certs: "{{ vcenter_validate_certs | default(omit) }}"
+    name: "{{ vm_guestname }}"
+    hardware: "{{ hardware }}"
+    state: present
+  delegate_to: localhost
+  when: hardware is defined
+
+- name: start VM
+  tags: start-vm
+  vmware_guest:
+    hostname: "{{ vcenter_hostname | default(omit) }}"
+    username: "{{ vcenter_username | default(omit) }}"
+    password: "{{ vcenter_password | default(omit) }}"
+    validate_certs: "{{ vcenter_validate_certs | default(omit) }}"
+    name: "{{ vm_guestname }}"
+    state: poweredon
+    wait_for_ip_address: yes
+  delegate_to: localhost
+
+#- name: wait for IP address _really_ being available
+#  include: wait-for-ip.yml
+
+- name: gather vm facts
+  vmware_guest_facts:
+    hostname: "{{ vcenter_hostname | default(omit) }}"
+    username: "{{ vcenter_username | default(omit) }}"
+    password: "{{ vcenter_password | default(omit) }}"
+    validate_certs: "{{ vcenter_validate_certs | default(omit) }}"
+    datacenter: "{{ vmware_datacenter }}"
+    name: "{{ vm_guestname }}"
+  delegate_to: localhost
+  register: vm_facts
+
+- name: use current IP address (from vm facts)
+  set_fact:
+    ansible_ssh_host: "{{ vm_facts.instance.ipv4 }}"
+
+- name: apply static IP configuration
+  include: configure-network.yml
+  when: static_ip is defined
+
+- name: gather host facts
+  setup:
+
+# vim: ts=2:sw=2:noautoindent:nosmartindent

@@ -1,0 +1,19 @@
+network:
+  version: 2
+  ethernets:
+    ens192:
+      dhcp4: no
+      addresses:
+        - {{ static_ipv4 }}/{{ cidr }}
+      gateway4: {{ gateway }}
+      nameservers:
+{% if dns_search is defined %}
+        search:
+{% for search in dns_search %}
+          - {{ search }}
+{% endfor %}
+{% endif %}
+        addresses:
+{% for server in dns_servers %}
+          - {{ server }}
+{% endfor %}

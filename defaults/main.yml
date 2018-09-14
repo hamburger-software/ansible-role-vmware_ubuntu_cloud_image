@@ -1,0 +1,10 @@
+---
+# defaults file for vmware_ubuntu_cloud_image
+
+vm_hostname: "{{ inventory_hostname_short }}"
+vm_guestname:  "{{ inventory_hostname }}"
+
+default_cidr: 8
+default_dns_servers: [8.8.8.8, 8.8.4.4]
+
+# vim: ts=2:sw=2:noautoindent:nosmartindent
