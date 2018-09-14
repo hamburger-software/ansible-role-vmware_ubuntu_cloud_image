@@ -17,9 +17,7 @@ This role adds support for these features.
 - Creates a virtual machine (VM) from a previously downloaded OVA file.
 - Sets the hostname.
 - Adds a ssh public key for the default user "ubuntu" so that Ansible can connect to the new machine.
-- Optionally adjusts the hardware, e.g. number of CPUs or memory, see
-  [vmware_guest](https://docs.ansible.com/ansible/latest/modules/vmware_guest_module.html)
-  for possible customizations.
+- Optionally adjusts the hardware, e.g. number of CPUs or memory, see [vmware_guest](https://docs.ansible.com/ansible/latest/modules/vmware_guest_module.html#parameters) for possible customizations.
 - Optionally changes the dynamic IP address to a static one (taken either from the playbook or from DNS).
 - The VM is turned on and can be used in the same playbook that invoked this role.
 - Several VMs can be created in parallel.
@@ -32,8 +30,7 @@ To use this role,
 - You need a VMware vSphere environment where the VM will be deployed.
 - Credentials for the vCenter server of that environment with appropriate permissions.
   [TODO document permissions]
-- Download an OVA file, e.g. [ubuntu-18.04-server-cloudimg-amd64.ova](https://cloud-images.ubuntu.com/releases/18.04/release/ubuntu-18.04-server-cloudimg-amd64.ova)
-  to the control machine first.
+- Download an OVA file, e.g. [ubuntu-18.04-server-cloudimg-amd64.ova](https://cloud-images.ubuntu.com/releases/18.04/release/ubuntu-18.04-server-cloudimg-amd64.ova) to the control machine first.
 
 If you want to retrieve the VM's IP addresses from DNS, you also have to 
 
@@ -65,12 +62,11 @@ Role Variables
 ### VM settings
 
 - The machine's hostname is `inventory_hostname_short` by default. It can be changed with `vm_hostname`.
-- Use `ssh_keys` to set one or more public keys that will be added to the *authorized_keys* file of the user *ubuntu*.
+- Use `ssh_keys` to set one or more public keys that will be added to the *authorized_keys* file of the user "ubuntu".
   This will allow Ansible to connect to the new machines.
-- The hardware can be specified with `hardware`, containing a dictionary as specified in
-  [vmware_guest](https://docs.ansible.com/ansible/latest/modules/vmware_guest_module.html#parameters).
+- The hardware can be specified with `hardware`, containing a dictionary as specified in [vmware_guest](https://docs.ansible.com/ansible/latest/modules/vmware_guest_module.html#parameters).
 
-To use a static IP, use the following keys in the dictionary `static_ip`:
+To use a static IP address, use the following keys in the dictionary `static_ip`:
 - `ipv4` - a specific IPv4 address you want to assign. Defaults to the IPv4 address found in DNS for the FQDN.
 - `gateway` - the default gateway (required)
 - `cidr` - the netmask of your network in CIDR format, defaults to `8`.
@@ -83,7 +79,7 @@ As the VMs do not exist yet, the ssh server's key is unknown.
 In order to connect to the new VMs, you need to turn off ssh host key checking.
 If you plan to repeatedly create VMs with the same FQDNs, ssh should not store the fingerprints in the known_hosts file.
 
-Recommended host/group variables:
+Therefore the recommended host/group variables are:
 
     ansible_user=ubuntu
     ansible_python_interpreter=/usr/bin/python3
