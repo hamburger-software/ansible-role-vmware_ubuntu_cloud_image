@@ -28,8 +28,7 @@ Requirements
 To use this role,
 
 - You need a VMware vSphere environment where the VM will be deployed.
-- Credentials for the vCenter server of that environment with appropriate permissions.
-  [TODO document permissions]
+- Credentials for the vCenter server of that environment with appropriate permissions, see below.
 - Download an OVA file, e.g. [ubuntu-18.04-server-cloudimg-amd64.ova](https://cloud-images.ubuntu.com/releases/18.04/release/ubuntu-18.04-server-cloudimg-amd64.ova) to the control machine first.
 
 If you want to retrieve the VM's IP addresses from DNS, you also have to 
@@ -41,10 +40,27 @@ If you want to retrieve the VM's IP addresses from DNS, you also have to
 
 The minimum Ansible version is 2.7.0.
 
+### vSphere Permissions
+
+The minimum permissions to create a VM with this role are:
+
+    DataStore > Allocate Space
+    Network > Assign Network
+    Resource > Assign Virtual Machine to Resource Pool
+    vApp > Import
+    Virtual Machine > Interaction > Power On
+    Virtual Machine > Configuration > Add New Disk
+
+To adjust CPU and memory settings, you will need
+
+    Virtual Machine > Configuration > Change CPU count
+    Virtual Machine > Configuration > Memory
+
+
 Role Variables
 --------------
 
-### vCenter connection
+### vCenter Connection
 
 - The URL of the vCenter server is set with `vcenter_hostname` or the environment variable `VMWARE_HOST`.
 - The vCenter user is set with `vcenter_username` or the environment variable `VMWARE_USER`.
@@ -52,14 +68,14 @@ Role Variables
 - Certificate validation can be disabled by setting `vcenter_validate_certs=no` or setting the environment variable
  `VMWARE_VALIDATE_CERTS` to `no`.
 
-### VMware settings
+### VMware Settings
 
 - The OVA file on the control machine is specified with `ova_file`.
 - The VM is created in the datacenter `vmware_datacenter` on the datastore `vmware_datastore`.
 - The VM can be placed in a resource pool by specifying `vmware_resource_pool`.
 - The VM name is `inventory_hostname` by default. It can be changed with `vm_guestname`.
 
-### VM settings
+### VM Settings
 
 - The machine's hostname is `inventory_hostname_short` by default. It can be changed with `vm_hostname`.
 - Use `ssh_keys` to set one or more public keys that will be added to the *authorized_keys* file of the user "ubuntu".
@@ -73,7 +89,7 @@ To use a static IP address, use the following keys in the dictionary `static_ip`
 - `dns_servers` - array of the DNS servers' IP addresses, defaults to Google's public DNS servers.
 - `dns_search` - an array with domain names that should be used as DNS search suffixes. 
 
-### Inventory settings
+### Inventory Settings
 
 As the VMs do not exist yet, the ssh server's key is unknown.
 In order to connect to the new VMs, you need to turn off ssh host key checking.
