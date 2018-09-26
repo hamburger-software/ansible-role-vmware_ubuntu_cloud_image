@@ -21,6 +21,8 @@ This role adds support for these features.
 - Optionally changes the dynamic IP address to a static one (taken either from the playbook or from DNS).
 - The VM is turned on and can be used in the same playbook that invoked this role.
 - Several VMs can be created in parallel.
+- Tested with Ubuntu Cloud Images 18.04 and 17.10.
+  Older versions do not work because they do not use `netplan` for network configuration.
 
 Requirements
 ------------
