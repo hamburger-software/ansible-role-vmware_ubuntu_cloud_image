@@ -16,7 +16,7 @@ This role adds support for these features.
 
 - Creates a virtual machine (VM) from a previously downloaded OVA file.
 - Sets the hostname.
-- Adds a ssh public key for the default user "ubuntu" so that Ansible can connect to the new machine.
+- Adds one or more ssh public keys for the default user "ubuntu" so that Ansible can connect to the new machine.
 - Optionally adjusts the hardware, e.g. number of CPUs or memory, see [vmware_guest](https://docs.ansible.com/ansible/latest/modules/vmware_guest_module.html#parameters) for possible customizations.
 - Optionally changes the dynamic IP address to a static one (taken either from the playbook or from DNS).
 - The VM is turned on and can be used in the same playbook that invoked this role.
@@ -80,8 +80,8 @@ Role Variables
 ### VM Settings
 
 - The machine's hostname is `inventory_hostname_short` by default. It can be changed with `vm_hostname`.
-- Use `ssh_keys` to set one or more public keys that will be added to the *authorized_keys* file of the user "ubuntu".
-  This will allow Ansible to connect to the new machines.
+- Use `ssh_keys` to set a list of public keys that will be added to the *authorized_keys* file of the user "ubuntu".
+  This will allow Ansible to connect to the new machines. Mandatory.
 - The hardware can be specified with `hardware`, containing a dictionary as specified in [vmware_guest](https://docs.ansible.com/ansible/latest/modules/vmware_guest_module.html#parameters).
 
 To use a static IP address, use the following keys in the dictionary `static_ip`:
@@ -136,7 +136,8 @@ playbook:
               dns_servers: [10.0.47.11, 10.0.48.12]
               dns_search:
               - your.domain
-            ssh_keys: ssh-rsa AAAAB3Nz[...]== some-key-name
+            ssh_keys:
+              - ssh-rsa AAAAB3Nz[...]== some-key-name
 
 inventory with 5 hosts:
 

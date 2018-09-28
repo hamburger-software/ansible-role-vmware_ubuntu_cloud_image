@@ -16,7 +16,7 @@
     name: "{{ vm_guestname }}"
     properties:
       hostname: "{{ vm_hostname }}"
-      public-keys: "{{ ssh_keys | default(omit) }}"
+      user-data: "{{ lookup('template', 'user-data.j2') | b64encode }}"
     power_on: no
   delegate_to: localhost
 
