@@ -13,7 +13,7 @@
   delegate_to: localhost
   register: wait_facts
   until: wait_facts.instance.ipv4 is not none
-  retries: 12
+  retries: 18
   delay: 5
 
 # vim: ts=2:sw=2:noautoindent:nosmartindent

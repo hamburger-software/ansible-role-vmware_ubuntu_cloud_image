@@ -45,8 +45,8 @@
     wait_for_ip_address: yes
   delegate_to: localhost
 
-#- name: wait for IP address _really_ being available
-#  include: wait-for-ip.yml
+- name: wait for IP address _really_ being available
+  include: wait-for-ip.yml
 
 - name: gather vm facts
   vmware_guest_facts:
