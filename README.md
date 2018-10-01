@@ -88,8 +88,9 @@ To use a static IP address, use the following keys in the dictionary `static_ip`
 - `ipv4` - a specific IPv4 address you want to assign. Defaults to the IPv4 address found in DNS for the FQDN.
 - `gateway` - the default gateway (required)
 - `cidr` - the netmask of your network in CIDR format, defaults to `8`.
-- `dns_servers` - array of the DNS servers' IP addresses, defaults to Google's public DNS servers.
-- `dns_search` - an array with domain names that should be used as DNS search suffixes. 
+- `dns_servers` - a list of the DNS servers' IP addresses, defaults to Google's public DNS servers.
+- `dns_search` - a list of domain names that should be used as DNS search suffixes.
+   Use this to put your VM in a domain. 
 
 ### Inventory Settings
 
