@@ -1,5 +1,13 @@
 #cloud-config
+{% if password is defined %}
+password: {{ password }}
+chpasswd: { expire: False }
+ssh_pwauth: True
+{% endif %}
+
+{% if ssh_keys is defined %}
 ssh_authorized_keys:
 {% for key in ssh_keys %}
   - {{ key }}
 {% endfor %}
+{% endif %}

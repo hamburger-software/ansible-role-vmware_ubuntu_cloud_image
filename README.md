@@ -7,7 +7,7 @@ Ansible role for creating virtual machines based on the [Ubuntu Cloud Image](htt
 
 Ubuntu offers pre-installed images for usage in clouds. 
 One of the available image formats is _Open Virtualization Appliance_ (OVA) that can be imported into VMware.
-The images use the [cloud-init](https://cloudinit.readthedocs.io/en/latest/index.html#) mechanism to allow very basic configuration.
+The images use the [cloud-init](https://cloudinit.readthedocs.io/en/latest/index.html) mechanism to allow very basic configuration.
 Sadly, there is no support for using static IP addresses and for adjusting the hardware during machine creation.
 
 This role adds support for these features.
@@ -16,7 +16,7 @@ This role adds support for these features.
 
 - Creates a virtual machine (VM) from a previously downloaded OVA file.
 - Sets the hostname.
-- Adds one or more ssh public keys for the default user "ubuntu" so that Ansible can connect to the new machine.
+- Adds one or more ssh public keys and/or a password for the default user "ubuntu" so that Ansible can connect to the new machine.
 - Optionally adjusts the hardware, e.g. number of CPUs or memory, see [vmware_guest](https://docs.ansible.com/ansible/latest/modules/vmware_guest_module.html#parameters) for possible customizations.
 - Optionally changes the dynamic IP address to a static one (taken either from the playbook or from DNS).
 - The VM is turned on and can be used in the same playbook that invoked this role.
@@ -81,7 +81,9 @@ Role Variables
 
 - The machine's hostname is `inventory_hostname_short` by default. It can be changed with `vm_hostname`.
 - Use `ssh_keys` to set a list of public keys that will be added to the *authorized_keys* file of the user "ubuntu".
-  This will allow Ansible to connect to the new machines. Mandatory.
+  At least one of `ssh_keys` and `password` has to be specified so that Ansible can connect to the new machine.
+- Use `password` to set a password for the user "ubuntu".
+  At least one of `ssh_keys` and `password` has to be specified so that Ansible can connect to the new machine.
 - The hardware can be specified with `hardware`, containing a dictionary as specified in [vmware_guest](https://docs.ansible.com/ansible/latest/modules/vmware_guest_module.html#parameters).
 
 To use a static IP address, use the following keys in the dictionary `static_ip`:
@@ -139,6 +141,7 @@ playbook:
               - your.domain
             ssh_keys:
               - ssh-rsa AAAAB3Nz[...]== some-key-name
+            password: passw0rd
 
 inventory with 5 hosts:
 
@@ -147,6 +150,7 @@ inventory with 5 hosts:
     
     [cloudimg:vars]
     ansible_user=ubuntu
+    ansible_password=passw0rd
     ansible_python_interpreter=/usr/bin/python3
     ansible_ssh_extra_args=-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null
 

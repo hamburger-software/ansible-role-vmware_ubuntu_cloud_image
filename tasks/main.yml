@@ -1,6 +1,11 @@
 ---
 # tasks file for vmware_ubuntu_cloud_image
 
+- name: ensure mandatory connection parameters are given
+  fail:
+    msg: "At least one of 'ssh_keys' and 'password' must be given"
+  when: ssh_keys is undefined and password is undefined
+
 - name: deploy OVA file
   tags: deploy-ova
   vmware_deploy_ovf:
