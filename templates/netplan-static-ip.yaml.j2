@@ -4,7 +4,7 @@ network:
     ens192:
       dhcp4: no
       addresses:
-        - {{ static_ipv4 }}/{{ cidr }}
+        - {{ static_ipv4 }}/{{ netmask }}
       gateway4: {{ gateway }}
       nameservers:
 {% if dns_search is defined %}

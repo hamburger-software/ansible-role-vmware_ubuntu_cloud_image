@@ -88,8 +88,8 @@ Role Variables
 
 To use a static IP address, use the following keys in the dictionary `static_ip`:
 - `ipv4` - a specific IPv4 address you want to assign. Defaults to the IPv4 address found in DNS for the FQDN.
+- `netmask` - the netmask in [CIDR](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing) notation, defaults to `8`.
 - `gateway` - the default gateway (required)
-- `cidr` - the netmask of your network in CIDR format, defaults to `8`.
 - `dns_servers` - a list of the DNS servers' IP addresses, defaults to Google's public DNS servers.
 - `dns_search` - a list of domain names that should be used as DNS search suffixes.
    Use this to put your VM in a domain. 
@@ -134,7 +134,7 @@ playbook:
               num_cpus: 4
               memory_mb: 2048
             static_ip:
-              cidr: 16
+              netmask: 16
               gateway: 10.0.42.1
               dns_servers: [10.0.47.11, 10.0.48.12]
               dns_search:
