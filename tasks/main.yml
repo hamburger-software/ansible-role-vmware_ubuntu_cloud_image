@@ -5,6 +5,7 @@
   fail:
     msg: "At least one of 'ssh_keys' and 'password' must be given"
   when: ssh_keys is undefined and password is undefined
+  run_once: true
 
 - name: deploy OVA file
   tags: deploy-ova
