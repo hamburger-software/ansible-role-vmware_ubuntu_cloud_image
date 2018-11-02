@@ -6,18 +6,11 @@ galaxy_info:
   license: MIT
   min_ansible_version: 2.7
   platforms:
-    - name: Debian
-      versions: [all]
-    - name: EL
-      versions: [all]
-    - name: FreeBSD
-      versions: [all]
-    - name: Fedora
-      versions: [all]
-    - name: GenericLinux
-      versions: [all]
     - name: Ubuntu
-      versions: [all]
+      versions:
+        - cuttlefish
+        - bionic
+        - artful
   cloud_platforms:
     - VMware
   galaxy_tags:
