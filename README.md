@@ -1,7 +1,7 @@
 vmware_ubuntu_cloud_image
 =========================
 
-Ansible role for creating virtual machines based on the [Ubuntu Cloud Image](https://cloud-images.ubuntu.com/) in a vSphere environment.
+Ansible role for creating virtual machines based on [Ubuntu Cloud Images](https://cloud-images.ubuntu.com/) in a vSphere environment.
 
 ### Ubuntu Cloud Images
 
@@ -21,7 +21,7 @@ This role adds support for these features.
 - Optionally changes the dynamic IP address to a static one (taken either from the playbook or from DNS).
 - The VM is turned on and can be used in the same playbook that invoked this role.
 - Several VMs can be created in parallel.
-- Tested with Ubuntu Cloud Images 18.10, 18.04 and 17.10.
+- Tested with Ubuntu Cloud Images [18.10](https://cloud-images.ubuntu.com/releases/18.10/release/ubuntu-18.10-server-cloudimg-amd64.ova), [18.04](https://cloud-images.ubuntu.com/releases/18.04/release/ubuntu-18.04-server-cloudimg-amd64.ova) and [17.10](https://cloud-images.ubuntu.com/artful/current/artful-server-cloudimg-amd64.ova).
   Older versions do not work because they do not use `netplan` for network configuration.
 
 Requirements
@@ -31,14 +31,14 @@ To use this role,
 
 - You need a VMware vSphere environment where the VM will be deployed.
 - Credentials for the vCenter server of that environment with appropriate permissions, see below.
-- Download an OVA file, e.g. [ubuntu-18.04-server-cloudimg-amd64.ova](https://cloud-images.ubuntu.com/releases/18.04/release/ubuntu-18.04-server-cloudimg-amd64.ova) to the control machine first.
+- Download an OVA file, e.g. [ubuntu-18.04-server-cloudimg-amd64.ova](https://cloud-images.ubuntu.com/releases/18.04/release/ubuntu-18.04-server-cloudimg-amd64.ova) to the control machine.
 
 If you want to retrieve the VM's IP addresses from DNS, you also have to 
 
 - Install dnspython (python library, http://www.dnspython.org/) on the control machine.
 - Use fully qualified domain names (FQDN, e.g. host.example.org) in the inventory.
   The FQDN will also be used as the VM name.
-- Create A records for each VM you want to create.
+- Add A records for each VM you want to create.
 
 The minimum Ansible version is 2.7.0.
 
