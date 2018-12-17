@@ -1,5 +1,15 @@
 # Changelog
 
+## v2.0.1 (2018-12-17)
+
+### Features
+
+- Parameter verification is only executed once.
+
+### Changes
+
+- Ansible 2.7.1 is required, a workaround for Ansible 2.7.0 was removed.
+
 ## v2.0.0 (2018-10-02)
 
 ### Features
