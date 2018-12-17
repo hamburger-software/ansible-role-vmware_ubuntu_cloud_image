@@ -40,7 +40,7 @@ If you want to retrieve the VM's IP addresses from DNS, you also have to
   The FQDN will also be used as the VM name.
 - Add A records for each VM you want to create.
 
-The minimum Ansible version is 2.7.0.
+The minimum Ansible version is 2.7.1.
 
 ### vSphere Permissions
 
