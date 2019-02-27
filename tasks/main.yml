@@ -17,6 +17,7 @@
     datacenter: "{{ vmware_datacenter }}"
     datastore: "{{ vmware_datastore }}"
     resource_pool: "{{ vmware_resource_pool | default(omit) }}"
+    networks: "{{ vmware_networks | default(omit) }}"
     allow_duplicates: no
     ova: "{{ ova_file }}"
     name: "{{ vm_guestname }}"

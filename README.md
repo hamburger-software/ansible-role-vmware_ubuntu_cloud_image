@@ -85,6 +85,7 @@ Role Variables
 - Use `password` to set a password for the user "ubuntu".
   At least one of `ssh_keys` and `password` has to be specified so that Ansible can connect to the new machine.
 - The hardware can be specified with `hardware`, containing a dictionary as specified in [vmware_guest](https://docs.ansible.com/ansible/latest/modules/vmware_guest_module.html#parameters).
+- User defined network mappings can be specified with `networks`, see [vmware_deploy_ovf](https://docs.ansible.com/ansible/latest/modules/vmware_deploy_ovf_module.html#parameters) for semantics.
 
 To use a static IP address, use the following keys in the dictionary `static_ip`:
 - `ipv4` - a specific IPv4 address you want to assign. Defaults to the IPv4 address found in DNS for the FQDN.
