@@ -1,5 +1,15 @@
 # Changelog
 
+## v2.1.0 (2019-04-02)
+
+### Features
+
+- Disk size may be increased.
+- Support for custom network mappings
+  
+  This allows to override the default network mappings of
+  *ansible_deploy_ovf* with user-defined or empty mappings.
+
 ## v2.0.1 (2018-12-17)
 
 ### Features
