@@ -18,6 +18,7 @@ This role adds support for these features.
 - Sets the hostname.
 - Adds one or more ssh public keys and/or a password for the default user "ubuntu" so that Ansible can connect to the new machine.
 - Optionally adjusts the hardware, e.g. number of CPUs or memory, see [vmware_guest](https://docs.ansible.com/ansible/latest/modules/vmware_guest_module.html#parameters) for possible customizations.
+- Disk size may be increased (defaults to 10GB)
 - Optionally changes the dynamic IP address to a static one (taken either from the playbook or from DNS).
 - The VM is turned on and can be used in the same playbook that invoked this role.
 - Several VMs can be created in parallel.
@@ -53,10 +54,14 @@ The minimum permissions to create a VM with this role are:
     Virtual Machine > Interaction > Power On
     Virtual Machine > Configuration > Add New Disk
 
-To adjust CPU and memory settings, you will need
+To adjust CPU and memory settings, you need
 
     Virtual Machine > Configuration > Change CPU count
     Virtual Machine > Configuration > Memory
+
+To adjust disk size, you need
+
+    Virtual Machine > Configuration > Extend virtual disk
 
 
 Role Variables
@@ -85,6 +90,10 @@ Role Variables
 - Use `password` to set a password for the user "ubuntu".
   At least one of `ssh_keys` and `password` has to be specified so that Ansible can connect to the new machine.
 - The hardware can be specified with `hardware`, containing a dictionary as specified in [vmware_guest](https://docs.ansible.com/ansible/latest/modules/vmware_guest_module.html#parameters).
+- Disk size may be adjusted with `disk`. This parameter accepts a list of disk specifications as documented in [vmware_guest](https://docs.ansible.com/ansible/latest/modules/vmware_guest_module.html#parameters).
+  The first disk corresponds to the imported virtual disk. Its size may only be increased.
+  Due to limitations of the `vmware_guest` module, no additional disks can be added.
+  See the example playbook below for usage.
 - User defined network mappings can be specified with `networks`, see [vmware_deploy_ovf](https://docs.ansible.com/ansible/latest/modules/vmware_deploy_ovf_module.html#parameters) for semantics.
 
 To use a static IP address, use the following keys in the dictionary `static_ip`:
@@ -134,6 +143,8 @@ playbook:
             hardware:
               num_cpus: 4
               memory_mb: 2048
+            disk:
+              - size_gb: 20
             static_ip:
               netmask: 16
               gateway: 10.0.42.1
