@@ -41,7 +41,7 @@ If you want to retrieve the VM's IP addresses from DNS, you also have to
   The FQDN will also be used as the VM name.
 - Add A records for each VM you want to create.
 
-The minimum Ansible version is 2.7.1.
+The minimum Ansible version is 2.8.0.
 
 ### vSphere Permissions
 
@@ -90,9 +90,8 @@ Role Variables
 - Use `password` to set a password for the user "ubuntu".
   At least one of `ssh_keys` and `password` has to be specified so that Ansible can connect to the new machine.
 - The hardware can be specified with `hardware`, containing a dictionary as specified in [vmware_guest](https://docs.ansible.com/ansible/latest/modules/vmware_guest_module.html#parameters).
-- Disk size may be adjusted with `disk`. This parameter accepts a list of disk specifications as documented in [vmware_guest](https://docs.ansible.com/ansible/latest/modules/vmware_guest_module.html#parameters).
+- Disk size may be adjusted with `disk`. This parameter accepts a list of disk specifications as documented in [vmware_guest_disk](https://docs.ansible.com/ansible/latest/modules/vmware_guest_disk_module.html#parameters).
   The first disk corresponds to the imported virtual disk. Its size may only be increased.
-  Due to limitations of the `vmware_guest` module, no additional disks can be added.
   See the example playbook below for usage.
 - User defined network mappings can be specified with `networks`, see [vmware_deploy_ovf](https://docs.ansible.com/ansible/latest/modules/vmware_deploy_ovf_module.html#parameters) for semantics.
 
@@ -145,6 +144,14 @@ playbook:
               memory_mb: 2048
             disk:
               - size_gb: 20
+                datastore: your-datastore
+                scsi_controller: 0
+                unit_number: 0
+              - size_mb: 250
+                datastore: your-datastore
+                scsi_controller: 0
+                unit_number: 1
+                type: thin
             static_ip:
               netmask: 16
               gateway: 10.0.42.1

@@ -36,10 +36,21 @@
     validate_certs: "{{ vcenter_validate_certs | default(omit) }}"
     name: "{{ vm_guestname }}"
     hardware: "{{ hardware }}"
-    disk: "{{ disk | default(omit) }}"
     state: present
   delegate_to: localhost
   when: hardware is defined
+
+- name: configure hard disks
+  tags: configure-hardware
+  vmware_guest_disk:
+    hostname: "{{ vcenter_hostname | default(omit) }}"
+    username: "{{ vcenter_username | default(omit) }}"
+    password: "{{ vcenter_password | default(omit) }}"
+    validate_certs: "{{ vcenter_validate_certs | default(omit) }}"
+    datacenter: "{{ vmware_datacenter }}"
+    name: "{{ vm_guestname }}"
+    disk: "{{ disk | default(omit) }}"
+  delegate_to: localhost
 
 - name: start VM
   tags: start-vm
