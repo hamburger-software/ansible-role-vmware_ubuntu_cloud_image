@@ -1,6 +1,6 @@
 # Changelog
 
-## v3.0.0 (not released yet)
+## v3.0.0 (2019-05-17)
 
 ### Features
 
@@ -9,6 +9,7 @@
   The first element pertains to the configuration of the existing disk.
   The second and subsequent ones configure additional disks.
   See [vmware_guest_disk](https://docs.ansible.com/ansible/latest/modules/vmware_guest_disk_module.html).
+- Ubuntu 19.04 is a tested platform.
 
 ### Changes
 
