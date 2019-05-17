@@ -1,5 +1,22 @@
 # Changelog
 
+## v3.0.0 (not released yet)
+
+### Features
+
+- Disks may be added.  
+  In order to add a disk, supply a `disk` parameter with two disk specifications.
+  The first element pertains to the configuration of the existing disk.
+  The second and subsequent ones configure additional disks.
+  See [vmware_guest_disk](https://docs.ansible.com/ansible/latest/modules/vmware_guest_disk_module.html).
+
+### Changes
+
+- In order to enable creation of disks, a new module (which was added in Ansible 2.8.0) had to be used.
+  This module requires additional parameters when used to configure an existing disk.
+  If your playbooks increase disk size, they will have to be updated.
+  See the [example playbook](README.md#example-playbook).
+
 ## v2.1.0 (2019-04-02)
 
 ### Features
