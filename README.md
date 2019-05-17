@@ -22,7 +22,7 @@ This role adds support for these features.
 - Optionally changes the dynamic IP address to a static one (taken either from the playbook or from DNS).
 - The VM is turned on and can be used in the same playbook that invoked this role.
 - Several VMs can be created in parallel.
-- Tested with Ubuntu Cloud Images [18.10](https://cloud-images.ubuntu.com/releases/18.10/release/ubuntu-18.10-server-cloudimg-amd64.ova), [18.04](https://cloud-images.ubuntu.com/releases/18.04/release/ubuntu-18.04-server-cloudimg-amd64.ova) and [17.10](http://cloud-images-archive.ubuntu.com/releases/artful/release-20180706/ubuntu-17.10-server-cloudimg-amd64.ova).
+- Tested with Ubuntu Cloud Images [19.04](https://cloud-images.ubuntu.com/releases/19.04/release-20190514/ubuntu-19.04-server-cloudimg-amd64.ova), [18.10](https://cloud-images.ubuntu.com/releases/18.10/release-20190514/ubuntu-18.10-server-cloudimg-amd64.ova), [18.04](https://cloud-images.ubuntu.com/releases/18.04/release-20190514/ubuntu-18.04-server-cloudimg-amd64.ova) and [17.10](http://cloud-images-archive.ubuntu.com/releases/artful/release-20180706/ubuntu-17.10-server-cloudimg-amd64.ova).
   Older versions do not work because they do not use `netplan` for network configuration.
 
 Requirements
