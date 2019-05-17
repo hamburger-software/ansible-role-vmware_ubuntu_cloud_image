@@ -112,7 +112,6 @@ If you plan to repeatedly create VMs with the same FQDNs, ssh should not store t
 Therefore the recommended host/group variables are:
 
     ansible_user=ubuntu
-    ansible_python_interpreter=/usr/bin/python3
     ansible_ssh_extra_args=-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null
 
 Dependencies
@@ -170,7 +169,6 @@ inventory with 5 hosts:
     [cloudimg:vars]
     ansible_user=ubuntu
     ansible_password=passw0rd
-    ansible_python_interpreter=/usr/bin/python3
     ansible_ssh_extra_args=-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null
 
 License
