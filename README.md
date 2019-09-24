@@ -28,18 +28,18 @@ This role adds support for these features.
 Requirements
 ------------
 
-To use this role,
+To use this role, you need
 
-- You need a VMware vSphere environment where the VM will be deployed.
+- a VMware vSphere environment where the VM will be deployed.
 - Credentials for the vCenter server of that environment with appropriate permissions, see below.
-- Download an OVA file, e.g. [ubuntu-18.04-server-cloudimg-amd64.ova](https://cloud-images.ubuntu.com/releases/18.04/release/ubuntu-18.04-server-cloudimg-amd64.ova) to the control machine.
+- an OVA file, e.g. [ubuntu-18.04-server-cloudimg-amd64.ova](https://cloud-images.ubuntu.com/releases/18.04/release/ubuntu-18.04-server-cloudimg-amd64.ova) on the control machine.
 
 If you want to retrieve the VM's IP addresses from DNS, you also have to 
 
-- Install dnspython (python library, http://www.dnspython.org/) on the control machine.
-- Use fully qualified domain names (FQDN, e.g. host.example.org) in the inventory.
+- install dnspython (python library, http://www.dnspython.org/) on the control machine.
+- use fully qualified domain names (FQDN, e.g. host.example.org) in the inventory.
   The FQDN will also be used as the VM name.
-- Add A records for each VM you want to create.
+- add A records for each VM you want to create.
 
 The minimum Ansible version is 2.8.0.
 
@@ -107,7 +107,7 @@ To use a static IP address, use the following keys in the dictionary `static_ip`
 
 As the VMs do not exist yet, the ssh server's key is unknown.
 In order to connect to the new VMs, you need to turn off ssh host key checking.
-If you plan to repeatedly create VMs with the same FQDNs, ssh should not store the fingerprints in the known_hosts file.
+If you plan to repeatedly create VMs with the same FQDNs, ssh should not store the fingerprints in the _known_hosts_ file.
 
 Therefore the recommended host/group variables are:
 
