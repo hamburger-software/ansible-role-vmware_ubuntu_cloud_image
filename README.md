@@ -36,12 +36,13 @@ To use this role, you need
 
 If you want to retrieve the VM's IP addresses from DNS, you also have to 
 
-- install dnspython (python library, http://www.dnspython.org/) on the control machine.
+- install _dnspython_ (python library, http://www.dnspython.org/) on the control machine.
 - use fully qualified domain names (FQDN, e.g. host.example.org) in the inventory.
   The FQDN will also be used as the VM name.
 - add A records for each VM you want to create.
 
 The minimum Ansible version is 2.8.0.
+Ansible 2.8.6 cannot be used due to a bug in *vmware_deploy_ofv*.
 
 ### vSphere Permissions
 
