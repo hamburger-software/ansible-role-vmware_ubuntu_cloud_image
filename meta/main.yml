@@ -9,7 +9,7 @@ galaxy_info:
     - name: Ubuntu
       versions:
         - eoan
-        - disco
+        - disco dingo
         - cuttlefish
         - bionic
         - artful
