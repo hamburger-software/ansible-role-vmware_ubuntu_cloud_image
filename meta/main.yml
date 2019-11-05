@@ -1,7 +1,7 @@
 galaxy_info:
   role_name: vmware_ubuntu_cloud_image
   author: Harald Albers
-  description: Creates virtual machines in VMware based on Ubuntu Cloud Images
+  description: Creates virtual machines based on Ubuntu Cloud Images in a vSphere environment.
   company: HS - Hamburger Software GmbH & Co. KG
   license: MIT
   min_ansible_version: 2.8.0
