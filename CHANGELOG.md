@@ -1,5 +1,11 @@
 # Changelog
 
+## v4.0.0 (2019-11-06)
+
+### Changes
+
+- **The role was relocated to the new Galaxy namespace [hamburger_software](https://galaxy.ansible.com/hamburger_software).**
+
 ## v3.0.0 (2019-05-17)
 
 ### Features

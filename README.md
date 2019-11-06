@@ -130,7 +130,7 @@ playbook:
       gather_facts: no
     
       roles:
-        - role: albers.vmware_ubuntu_cloud_image
+        - role: hamburger_software.vmware_ubuntu_cloud_image
           vars:
             vcenter_hostname: vcenter.your.domain
             vcenter_username: Administrator@vsphere.local
