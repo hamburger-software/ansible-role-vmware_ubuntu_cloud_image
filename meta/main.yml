@@ -8,6 +8,7 @@ galaxy_info:
   platforms:
     - name: Ubuntu
       versions:
+        - eoan
         - disco dingo
         - cuttlefish
         - bionic
