@@ -42,7 +42,7 @@ If you want to retrieve the VM's IP addresses from DNS, you also have to
 - add A records for each VM you want to create.
 
 The minimum Ansible version is 2.8.0.
-Ansible 2.8.6 cannot be used due to a bug in [vmware_deploy_ovf](https://docs.ansible.com/ansible/latest/modules/vmware_deploy_ovf_module).
+Ansible 2.8.6 cannot be used due to a [bug](https://github.com/ansible/ansible/pull/64011) in [vmware_deploy_ovf](https://docs.ansible.com/ansible/latest/modules/vmware_deploy_ovf_module).
 
 ### vSphere Permissions
 
