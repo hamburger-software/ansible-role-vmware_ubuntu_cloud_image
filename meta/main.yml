@@ -8,8 +8,9 @@ galaxy_info:
   platforms:
     - name: Ubuntu
       versions:
+        - focal
         - eoan
-        - disco dingo
+        - disco
         - cuttlefish
         - bionic
         - artful
