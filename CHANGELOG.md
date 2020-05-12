@@ -1,5 +1,15 @@
 # Changelog
 
+## v4.0.1 (2020-05-13)
+
+### Bugfixes
+
+- The domain search no longer is ingored.
+
+### Features
+
+- Ubuntu 20.04 is a tested platform.
+
 ## v4.0.0 (2019-11-06)
 
 ### Changes
