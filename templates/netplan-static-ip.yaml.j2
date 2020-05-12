@@ -7,7 +7,7 @@ network:
         - {{ static_ipv4 }}/{{ netmask }}
       gateway4: {{ gateway }}
       nameservers:
-{% if dns_search is defined %}
+{% if dns_search|length > 0 %}
         search:
 {% for search in dns_search %}
           - {{ search }}
