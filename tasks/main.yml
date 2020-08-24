@@ -35,6 +35,7 @@
     password: "{{ vcenter_password | default(omit) }}"
     validate_certs: "{{ vcenter_validate_certs | default(omit) }}"
     name: "{{ vm_guestname }}"
+    annotation: "{{ annotation | default(omit) }}"
     hardware: "{{ hardware | default(omit) }}"
     customvalues: "{{ customvalues | default(omit) }}"
     state: present
