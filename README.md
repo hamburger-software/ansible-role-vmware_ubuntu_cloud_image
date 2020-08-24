@@ -95,6 +95,7 @@ Role Variables
   The first disk corresponds to the imported virtual disk. Its size may only be increased.
   See the example playbook below for usage.
 - User defined network mappings can be specified with `networks`, see [vmware_deploy_ovf](https://docs.ansible.com/ansible/latest/modules/vmware_deploy_ovf_module.html#parameters) for semantics.
+- To set VM [customvalues](https://stackoverflow.com/a/57976458/2402612), supply `customvalues` with a list of dicts as shown in the example playbook. 
 
 To use a static IP address, use the following keys in the dictionary `static_ip`:
 - `ipv4` - a specific IPv4 address you want to assign. Defaults to the IPv4 address found in DNS for the FQDN.
