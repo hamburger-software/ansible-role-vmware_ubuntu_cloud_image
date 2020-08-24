@@ -18,6 +18,7 @@ This role adds support for these features.
 - Sets the hostname.
 - Adds one or more ssh public keys and/or a password for the default user "ubuntu" so that Ansible can connect to the new machine.
 - Optionally adjusts the hardware, e.g. number of CPUs or memory, see [vmware_guest](https://docs.ansible.com/ansible/latest/modules/vmware_guest_module.html#parameters) for possible customizations.
+- Optionally sets VM [customvalues](https://stackoverflow.com/a/57976458/2402612).
 - Disk size may be increased (defaults to 10GB), additional disks may be created and added.
 - Optionally changes the dynamic IP address to a static one (taken either from the playbook or from DNS).
 - The VM is turned on and can be used in the same playbook that invoked this role.
@@ -142,6 +143,10 @@ playbook:
             hardware:
               num_cpus: 4
               memory_mb: 2048
+            # this avoids excessive syslog messages from multipathd under Ubuntu 20.04
+            customvalues:
+              - key: disk.EnableUUID
+                value: 'TRUE'
             disk:
               - size_gb: 20
                 datastore: your-datastore

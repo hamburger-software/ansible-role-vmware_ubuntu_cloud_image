@@ -1,10 +1,25 @@
 # Changelog
 
+## v4.1.0 (WIP)
+
+### Features
+
+- [customvalues](https://stackoverflow.com/a/57976458/2402612) can be set on VM creation.
+
+This can be used to avoid [excessive syslog messages from multipathd](https://bugs.launchpad.net/ubuntu/+source/multipath-tools/+bug/1875594) on Ubuntu 20.04 based VMs.
+Add this fragment to the role configuration: 
+
+```yaml
+customvalues:
+  - key: disk.EnableUUID
+    value: 'TRUE'
+```
+
 ## v4.0.1 (2020-05-13)
 
 ### Bugfixes
 
-- The domain search no longer is ingored.
+- The domain search no longer is ignored.
 
 ### Features
 

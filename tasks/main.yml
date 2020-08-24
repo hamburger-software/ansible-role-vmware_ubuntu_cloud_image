@@ -27,21 +27,21 @@
     power_on: no
   delegate_to: localhost
 
-- name: configure VM hardware
-  tags: configure-hardware
+- name: configure VM
+  tags: configure-vm
   vmware_guest:
     hostname: "{{ vcenter_hostname | default(omit) }}"
     username: "{{ vcenter_username | default(omit) }}"
     password: "{{ vcenter_password | default(omit) }}"
     validate_certs: "{{ vcenter_validate_certs | default(omit) }}"
     name: "{{ vm_guestname }}"
-    hardware: "{{ hardware }}"
+    hardware: "{{ hardware | default(omit) }}"
+    customvalues: "{{ customvalues | default(omit) }}"
     state: present
   delegate_to: localhost
-  when: hardware is defined
 
-- name: configure hard disks
-  tags: configure-hardware
+- name: configure VM
+  tags: configure-vm
   vmware_guest_disk:
     hostname: "{{ vcenter_hostname | default(omit) }}"
     username: "{{ vcenter_username | default(omit) }}"
