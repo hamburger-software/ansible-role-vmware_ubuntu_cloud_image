@@ -10,6 +10,7 @@
   template:
     src: templates/netplan-static-ip.yaml.j2
     dest: /etc/netplan/60-static-ip.yaml
+    mode: '644'
   become: yes
   register: netplan_template
 
