@@ -1,6 +1,14 @@
 # Changelog
 
-## v4.1.0 (WIP)
+## v5.0.0 (WIP)
+
+### Changes
+
+Because of renamed dependencies, the module now requires Ansible 2.9.0 or above.
+
+### Bugfixes
+
+- Remove warning about changed default permissions on file creation.
 
 ### Features
 

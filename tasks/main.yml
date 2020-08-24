@@ -65,7 +65,7 @@
   delegate_to: localhost
 
 - name: gather vm facts
-  vmware_guest_facts:
+  vmware_guest_info:
     hostname: "{{ vcenter_hostname | default(omit) }}"
     username: "{{ vcenter_username | default(omit) }}"
     password: "{{ vcenter_password | default(omit) }}"
