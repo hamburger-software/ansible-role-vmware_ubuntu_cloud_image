@@ -41,7 +41,7 @@
     state: present
   delegate_to: localhost
 
-- name: configure VM
+- name: configure disks
   tags: configure-vm
   vmware_guest_disk:
     hostname: "{{ vcenter_hostname | default(omit) }}"
