@@ -1,5 +1,12 @@
 # Changelog
 
+## v5.1.1 (2020-12-14)
+
+### Features
+
+- Ubuntu 20.10 is a tested platform.
+- Fixed an inaccurate task name.
+
 ## v5.1.0 (2020-08-24)
 
 ### Features
