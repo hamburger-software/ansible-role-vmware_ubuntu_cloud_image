@@ -5,6 +5,7 @@
 ### Features
 
 - Virtual Machines can be placed in folders.
+- Ubuntu 21.04 is a tested platform.
 
 ## v5.1.1 (2020-12-14)
 
