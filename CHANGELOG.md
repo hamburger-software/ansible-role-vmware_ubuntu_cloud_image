@@ -1,5 +1,11 @@
 # Changelog
 
+## v5.2.0 (2021-11-04)
+
+### Features
+
+- Virtual Machines can be placed in folders.
+
 ## v5.1.1 (2020-12-14)
 
 ### Features

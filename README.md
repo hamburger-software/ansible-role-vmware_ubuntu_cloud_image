@@ -81,7 +81,7 @@ Role Variables
 
 - The OVA file on the control machine is specified with `ova_file`.
 - The VM is created in the datacenter `vmware_datacenter` on the datastore `vmware_datastore`.
-- The VM can be placed in a resource pool by specifying `vmware_resource_pool`.
+- The VM can be placed in a folder by specifying `vmware_folder` and in a resource pool by specifying `vmware_resource_pool`.
 - The VM name is `inventory_hostname` by default. It can be changed with `vm_guestname`.
 
 ### VM Settings
@@ -142,6 +142,7 @@ playbook:
             vcenter_validate_certs: no
             vmware_datacenter: your-datacenter
             vmware_datastore: your-datastore
+            vmware_folder: your-datacenter/vm/some-folder
             ova_file: ubuntu-20.04-server-cloudimg-amd64.ova
             hardware:
               num_cpus: 4

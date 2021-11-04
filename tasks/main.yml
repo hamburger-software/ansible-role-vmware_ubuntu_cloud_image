@@ -16,6 +16,7 @@
     validate_certs: "{{ vcenter_validate_certs | default(omit) }}"
     datacenter: "{{ vmware_datacenter }}"
     datastore: "{{ vmware_datastore }}"
+    folder: "{{ vmware_folder | default(omit) }}"
     resource_pool: "{{ vmware_resource_pool | default(omit) }}"
     networks: "{{ vmware_networks | default(omit) }}"
     allow_duplicates: no
