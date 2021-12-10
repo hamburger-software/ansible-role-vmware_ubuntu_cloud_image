@@ -18,7 +18,7 @@ This role adds support for these features.
 - Sets the hostname.
 - Adds one or more ssh public keys and/or a password for the default user "ubuntu" so that Ansible can connect to the new machine.
 - Optionally adjusts the hardware, e.g. number of CPUs or memory, see [vmware_guest](https://docs.ansible.com/ansible/latest/modules/vmware_guest_module.html#parameters) for possible customizations.
-- Optionally sets VM notes and/or VM [customvalues](https://stackoverflow.com/a/57976458/2402612).
+- Optionally sets VM notes and/or VM [Configuration Parameters](https://docs.vmware.com/en/VMware-vSphere/6.7/com.vmware.vsphere.html.hostclient.doc/GUID-8C639077-FF16-4D5D-9A7A-E16902CE00C2.html).
 - Disk size may be increased (defaults to 10GB), additional disks may be created and added.
 - Optionally changes the dynamic IP address to a static one (taken either from the playbook or from DNS).
 - The VM is turned on and can be used in the same playbook that invoked this role.
@@ -98,7 +98,7 @@ Role Variables
 - User defined network mappings can be specified with `networks`, see [vmware_deploy_ovf](https://docs.ansible.com/ansible/latest/modules/vmware_deploy_ovf_module.html#parameters) for semantics.
 - VM notes can be set with `annotation`.  
   To use this feature, the VMware permission `Virtual Machine > Configuration > Set annotation` is required.
-- To set VM [customvalues](https://stackoverflow.com/a/57976458/2402612), supply `customvalues` with a list of dicts as shown in the example playbook. 
+- To set VM configuration parameters, supply `advanced_settings` with a list of dicts as shown in the example playbook. 
 
 To use a static IP address, use the following keys in the dictionary `static_ip`:
 - `ipv4` - a specific IPv4 address you want to assign. Defaults to the IPv4 address found in DNS for the FQDN.
@@ -149,7 +149,7 @@ playbook:
               memory_mb: 2048
             annotation: 'sample VM based on Ubuntu Cloud Image'
             # this avoids excessive syslog messages from multipathd under Ubuntu 20.04
-            customvalues:
+            advanced_settings:
               - key: disk.EnableUUID
                 value: 'TRUE'
             disk:
