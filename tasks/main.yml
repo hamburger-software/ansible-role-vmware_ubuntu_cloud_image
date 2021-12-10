@@ -38,7 +38,7 @@
     name: "{{ vm_guestname }}"
     annotation: "{{ annotation | default(omit) }}"
     hardware: "{{ hardware | default(omit) }}"
-    customvalues: "{{ customvalues | default(omit) }}"
+    advanced_settings: "{{ advanced_settings | default(omit) }}"
     state: present
   delegate_to: localhost
 
