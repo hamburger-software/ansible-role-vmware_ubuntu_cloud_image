@@ -1,5 +1,35 @@
 # Changelog
 
+## v6.0.0 (2021-12-22)
+
+### Changes
+
+[community.vmware/#179](https://github.com/ansible-collections/community.vmware/pull/179) changed the semantics of *vmware_guest*'s `customvalues` parameter and added `advanced_settings`.
+As *hamburger_software.vmware_ubuntu_cloud_image* exposes `customvalues`, some usages will have to be adjusted.
+
+For example, if you used
+```yaml
+  customvalues:
+    - key: disk.EnableUUID
+      value: 'TRUE'
+```
+to set configuration file parameters, change it to the new parameter
+```yaml
+  advanced_settings:
+    - key: disk.EnableUUID
+      value: 'TRUE'
+```
+`customvalues` is still present, see the vSphere documentation of [custom attributes](https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.vcenterhost.doc/GUID-73606C4C-763C-4E27-A1DA-032E4C46219D.html) and VM [configuration file parameters](https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.hostclient.doc/GUID-8C639077-FF16-4D5D-9A7A-E16902CE00C2.html) for the difference between both parameters.
+
+`advanced_settings` was added to *vmware_guest* in the [1.8.0 release](https://github.com/ansible-collections/community.vmware/blob/main/CHANGELOG.rst#v1-8-0) of the _community.vmware collection_.
+This release is part of the _Ansible community package_ 3.2.0, which is based on _ansible-core_ 2.10.7 (see [build data](https://github.com/ansible-community/ansible-build-data/blob/main/3/CHANGELOG-v3.rst#ansible-base-4)).
+
+For that reason, the minimum Ansible version of this role was raised to 2.10.7.
+
+### Contributors
+
+@dotalchemy ([#5](https://github.com/hamburger-software/ansible-role-vmware_ubuntu_cloud_image/pull/5))
+
 ## v5.2.0 (2021-11-04)
 
 ### Features
