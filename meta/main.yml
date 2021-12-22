@@ -4,7 +4,7 @@ galaxy_info:
   description: Creates virtual machines based on Ubuntu Cloud Images in a vSphere environment.
   company: HS - Hamburger Software GmbH & Co. KG
   license: MIT
-  min_ansible_version: 2.9.0
+  min_ansible_version: 2.10.7
   platforms:
     - name: Ubuntu
       versions:
