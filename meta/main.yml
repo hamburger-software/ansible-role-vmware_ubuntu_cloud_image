@@ -5,7 +5,6 @@ galaxy_info:
   company: HS - Hamburger Software GmbH & Co. KG
   license: MIT
   min_ansible_version: 2.10.7
-  github_branch: main
   platforms:
     - name: Ubuntu
       versions:
