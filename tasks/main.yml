@@ -83,7 +83,7 @@
     ansible_ssh_host: "{{ vm_facts.instance.ipv4 }}"
 
 - name: apply static IP configuration
-  include: configure-network.yml
+  include_tasks: configure-network.yml
   when: static_ip is defined
 
 - name: gather host facts
