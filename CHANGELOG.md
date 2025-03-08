@@ -1,5 +1,11 @@
 # Changelog
 
+## v6.0.1 (2025-03-09)
+
+### Bugfixes
+
+The role no longer uses the `include` task because it was removed from Ansible core.
+
 ## v6.0.0 (2021-12-22)
 
 ### Changes
