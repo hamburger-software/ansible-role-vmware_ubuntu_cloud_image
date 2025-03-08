@@ -16,8 +16,6 @@ galaxy_info:
         - cuttlefish
         - bionic
         - artful
-  cloud_platforms:
-    - VMware
   galaxy_tags:
     - vsphere
     - vcenter
