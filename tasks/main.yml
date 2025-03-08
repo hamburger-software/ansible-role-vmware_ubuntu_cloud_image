@@ -2,14 +2,14 @@
 # tasks file for vmware_ubuntu_cloud_image
 
 - name: ensure mandatory connection parameters are given
-  fail:
+  ansible.builtin.fail:
     msg: "At least one of 'ssh_keys' and 'password' must be given"
   when: ssh_keys is undefined and password is undefined
   run_once: true
 
 - name: deploy OVA file
   tags: deploy-ova
-  vmware_deploy_ovf:
+  community.vmware.vmware_deploy_ovf:
     hostname: "{{ vcenter_hostname | default(omit) }}"
     username: "{{ vcenter_username | default(omit) }}"
     password: "{{ vcenter_password | default(omit) }}"
@@ -30,7 +30,7 @@
 
 - name: configure VM
   tags: configure-vm
-  vmware_guest:
+  community.vmware.vmware_guest:
     hostname: "{{ vcenter_hostname | default(omit) }}"
     username: "{{ vcenter_username | default(omit) }}"
     password: "{{ vcenter_password | default(omit) }}"
@@ -45,7 +45,7 @@
 
 - name: configure disks
   tags: configure-vm
-  vmware_guest_disk:
+  community.vmware.vmware_guest_disk:
     hostname: "{{ vcenter_hostname | default(omit) }}"
     username: "{{ vcenter_username | default(omit) }}"
     password: "{{ vcenter_password | default(omit) }}"
@@ -57,7 +57,7 @@
 
 - name: start VM
   tags: start-vm
-  vmware_guest:
+  community.vmware.vmware_guest:
     hostname: "{{ vcenter_hostname | default(omit) }}"
     username: "{{ vcenter_username | default(omit) }}"
     password: "{{ vcenter_password | default(omit) }}"
@@ -68,7 +68,7 @@
   delegate_to: localhost
 
 - name: gather vm facts
-  vmware_guest_info:
+  community.vmware.vmware_guest_info:
     hostname: "{{ vcenter_hostname | default(omit) }}"
     username: "{{ vcenter_username | default(omit) }}"
     password: "{{ vcenter_password | default(omit) }}"
@@ -79,14 +79,14 @@
   register: vm_facts
 
 - name: use current IP address (from vm facts)
-  set_fact:
+  ansible.builtin.set_fact:
     ansible_ssh_host: "{{ vm_facts.instance.ipv4 }}"
 
 - name: apply static IP configuration
-  include_tasks: configure-network.yml
+  ansible.builtin.include_tasks: configure-network.yml
   when: static_ip is defined
 
 - name: gather host facts
-  setup:
+  ansible.builtin.setup:
 
 # vim: ts=2:sw=2:noautoindent:nosmartindent
