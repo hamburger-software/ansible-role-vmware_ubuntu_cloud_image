@@ -1,12 +1,12 @@
 ---
 
-- name: remove cloud-init network configuration file
+- name: Remove cloud-init network configuration file
   ansible.builtin.file:
     path: /etc/netplan/50-cloud-init.yaml
     state: absent
   become: yes
 
-- name: create network configuration file
+- name: Create network configuration file
   ansible.builtin.template:
     src: templates/netplan-static-ip.yaml.j2
     dest: /etc/netplan/60-static-ip.yaml
@@ -14,22 +14,23 @@
   become: yes
   register: netplan_template
 
-- name: apply network configuration
+- name: Apply network configuration
   ansible.builtin.shell: "(sleep 1;netplan apply) &"
   async: 15
   poll: 0
   become: yes
   when: netplan_template is changed
 
-- name: use static IP address
+- name: Use static IP address
   ansible.builtin.set_fact:
     ansible_ssh_host: "{{ static_ipv4 }}"
   changed_when: vm_facts.instance.ipv4 != static_ipv4
   when: netplan_template is changed
 
-- ansible.builtin.meta: reset_connection
+- name: Reset connection
+  ansible.builtin.meta: reset_connection
 
-- name: ensure IP address is reachable
+- name: Ensure IP address is reachable
   ansible.builtin.wait_for_connection:
     connect_timeout: 3
     timeout: 30

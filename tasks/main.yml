@@ -1,13 +1,13 @@
 ---
 # tasks file for vmware_ubuntu_cloud_image
 
-- name: ensure mandatory connection parameters are given
+- name: Ensure mandatory connection parameters are given
   ansible.builtin.fail:
     msg: "At least one of 'ssh_keys' and 'password' must be given"
   when: ssh_keys is undefined and password is undefined
   run_once: true
 
-- name: deploy OVA file
+- name: Deploy OVA file
   tags: deploy-ova
   community.vmware.vmware_deploy_ovf:
     hostname: "{{ vcenter_hostname | default(omit) }}"
@@ -28,7 +28,7 @@
     power_on: no
   delegate_to: localhost
 
-- name: configure VM
+- name: Configure VM
   tags: configure-vm
   community.vmware.vmware_guest:
     hostname: "{{ vcenter_hostname | default(omit) }}"
@@ -43,7 +43,7 @@
     state: present
   delegate_to: localhost
 
-- name: configure disks
+- name: Configure disks
   tags: configure-vm
   community.vmware.vmware_guest_disk:
     hostname: "{{ vcenter_hostname | default(omit) }}"
@@ -55,7 +55,7 @@
     disk: "{{ disk | default(omit) }}"
   delegate_to: localhost
 
-- name: start VM
+- name: Start VM
   tags: start-vm
   community.vmware.vmware_guest:
     hostname: "{{ vcenter_hostname | default(omit) }}"
@@ -67,7 +67,7 @@
     wait_for_ip_address: yes
   delegate_to: localhost
 
-- name: gather vm facts
+- name: Gather vm facts
   community.vmware.vmware_guest_info:
     hostname: "{{ vcenter_hostname | default(omit) }}"
     username: "{{ vcenter_username | default(omit) }}"
@@ -78,15 +78,15 @@
   delegate_to: localhost
   register: vm_facts
 
-- name: use current IP address (from vm facts)
+- name: Use current IP address (from vm facts)
   ansible.builtin.set_fact:
     ansible_ssh_host: "{{ vm_facts.instance.ipv4 }}"
 
-- name: apply static IP configuration
+- name: Apply static IP configuration
   ansible.builtin.include_tasks: configure-network.yml
   when: static_ip is defined
 
-- name: gather host facts
+- name: Gather host facts
   ansible.builtin.setup:
 
 # vim: ts=2:sw=2:noautoindent:nosmartindent
