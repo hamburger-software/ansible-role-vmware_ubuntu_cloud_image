@@ -4,21 +4,21 @@
   ansible.builtin.file:
     path: /etc/netplan/50-cloud-init.yaml
     state: absent
-  become: yes
+  become: true
 
 - name: Create network configuration file
   ansible.builtin.template:
     src: templates/netplan-static-ip.yaml.j2
     dest: /etc/netplan/60-static-ip.yaml
     mode: '644'
-  become: yes
+  become: true
   register: netplan_template
 
 - name: Apply network configuration
   ansible.builtin.shell: "(sleep 1;netplan apply) &"
   async: 15
   poll: 0
-  become: yes
+  become: true
   when: netplan_template is changed
 
 - name: Use static IP address

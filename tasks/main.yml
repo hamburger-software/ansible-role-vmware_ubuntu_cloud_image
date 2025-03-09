@@ -19,13 +19,13 @@
     folder: "{{ vmware_folder | default(omit) }}"
     resource_pool: "{{ vmware_resource_pool | default(omit) }}"
     networks: "{{ vmware_networks | default(omit) }}"
-    allow_duplicates: no
+    allow_duplicates: false
     ova: "{{ ova_file }}"
     name: "{{ vm_guestname }}"
     properties:
       hostname: "{{ vm_hostname }}"
       user-data: "{{ lookup('template', 'user-data.j2') | b64encode }}"
-    power_on: no
+    power_on: false
   delegate_to: localhost
 
 - name: Configure VM
@@ -64,7 +64,7 @@
     validate_certs: "{{ vcenter_validate_certs | default(omit) }}"
     name: "{{ vm_guestname }}"
     state: poweredon
-    wait_for_ip_address: yes
+    wait_for_ip_address: true
   delegate_to: localhost
 
 - name: Gather vm facts
