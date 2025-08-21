@@ -1,11 +1,16 @@
 network:
   version: 2
+  renderer: networkd
   ethernets:
     ens192:
       dhcp4: no
+      dhcp6: no
       addresses:
         - {{ static_ipv4 }}/{{ netmask }}
-      gateway4: {{ gateway }}
+      routes:
+          - to: 0.0.0.0/0
+            via: {{ gateway }}
+            metric: 100
       nameservers:
 {% if dns_search|length > 0 %}
         search:
