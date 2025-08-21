@@ -82,6 +82,9 @@
   ansible.builtin.set_fact:
     ansible_ssh_host: "{{ vm_facts.instance.ipv4 }}"
 
+- name: Ping the VM on dhcp address
+  ping:
+
 - name: Apply static IP configuration
   ansible.builtin.include_tasks: configure-network.yml
   when: static_ip is defined
