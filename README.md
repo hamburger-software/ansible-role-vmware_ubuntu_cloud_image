@@ -17,8 +17,8 @@ This role adds support for these features.
 - Creates a virtual machine (VM) from a previously downloaded OVA file.
 - Sets the hostname.
 - Adds one or more ssh public keys and/or a password for the default user "ubuntu" so that Ansible can connect to the new machine.
-- Optionally adjusts the hardware, e.g. number of CPUs or memory, see [vmware_guest](https://docs.ansible.com/ansible/latest/modules/vmware_guest_module.html#parameters) for possible customizations.
-- Optionally sets VM notes (annotations), VM [configuration file parameters](https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.hostclient.doc/GUID-8C639077-FF16-4D5D-9A7A-E16902CE00C2.html) and/or VM [custom attributes](https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.vcenterhost.doc/GUID-73606C4C-763C-4E27-A1DA-032E4C46219D.html).
+- Optionally adjusts the hardware, e.g. number of CPUs or memory, see [vmware_guest](https://docs.ansible.com/ansible/latest/collections/community/vmware/vmware_guest_module.html#parameters) for possible customizations.
+- Optionally sets VM notes (annotations), VM [configuration file parameters](https://techdocs.broadcom.com/us/en/vmware-cis/vsphere/vsphere/7-0/edit-virtual-machine-configuration-file-parameters.html) and/or VM custom attributes.
 - Disk size may be increased (defaults to 10GB), additional disks may be created and added.
 - Optionally changes the dynamic IP address to a static one (taken either from the playbook or from DNS).
 - The VM is turned on and can be used in the same playbook that invoked this role.
@@ -31,9 +31,9 @@ Requirements
 
 To use this role, you need
 
-- a vSphere environment where the VM will be deployed.
+- a vSphere environment where the VM will be deployed (tested with vSphere 8.0).
 - Credentials for the vCenter server of that environment with appropriate permissions, see below.
-- an OVA file, e.g. [ubuntu-18.04-server-cloudimg-amd64.ova](https://cloud-images.ubuntu.com/releases/18.04/release/ubuntu-18.04-server-cloudimg-amd64.ova) on the control machine.
+- an OVA file, e.g. [ubuntu-24.04-server-cloudimg-amd64.ova](https://cloud-images.ubuntu.com/releases/focal/release-20250805/ubuntu-24.04-server-cloudimg-amd64.ova) on the control machine.
 
 If you want to retrieve the VM's IP addresses from DNS, you also have to 
 
@@ -92,11 +92,11 @@ Role Variables
   At least one of `ssh_keys` and `password` has to be specified so that Ansible can connect to the new machine.
 - Use `password` to set a password for the user "ubuntu".
   At least one of `ssh_keys` and `password` has to be specified so that Ansible can connect to the new machine.
-- The hardware can be specified with `hardware`, containing a dictionary as specified in [vmware_guest](https://docs.ansible.com/ansible/latest/modules/vmware_guest_module.html#parameters).
-- Disk size may be adjusted with `disk`. This parameter accepts a list of disk specifications as documented in [vmware_guest_disk](https://docs.ansible.com/ansible/latest/modules/vmware_guest_disk_module.html#parameters).
+- The hardware can be specified with `hardware`, containing a dictionary as specified in [vmware_guest](https://docs.ansible.com/ansible/latest/collections/community/vmware/vmware_guest_module.html#parameters).
+- Disk size may be adjusted with `disk`. This parameter accepts a list of disk specifications as documented in [vmware_guest_disk](https://docs.ansible.com/ansible/latest/collections/community/vmware/vmware_guest_disk_module.html#parameters).
   The first disk corresponds to the imported virtual disk. Its size may only be increased.
   See the example playbook below for usage.
-- User defined network mappings can be specified with `networks`, see [vmware_deploy_ovf](https://docs.ansible.com/ansible/latest/modules/vmware_deploy_ovf_module.html#parameters) for semantics.
+- User defined network mappings can be specified with `networks`, see [vmware_deploy_ovf](https://docs.ansible.com/ansible/latest/collections/community/vmware/vmware_deploy_ovf_module.html#parameters) for semantics.
 - VM notes can be set with `annotation`.  
   To use this feature, the VMware permission `Virtual Machine > Configuration > Set annotation` is required.
 - To set VM configuration file parameters, supply `advanced_settings` with a list of dicts as shown in the example playbook. 
