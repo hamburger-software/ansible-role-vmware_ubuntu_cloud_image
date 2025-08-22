@@ -8,14 +8,10 @@ galaxy_info:
   platforms:
     - name: Ubuntu
       versions:
-        - hirsute
-        - groovy
         - focal
-        - eoan
-        - disco
-        - cuttlefish
-        - bionic
-        - artful
+        - jammy
+        - noble
+        - plucky
   galaxy_tags:
     - vsphere
     - vcenter

@@ -1,5 +1,9 @@
 # Changelog
 
+## v6.1.0 (2025-08-23)
+
+Added support for more recent Ubuntu versions (22.04, 24.04, 25.04), dropped support for outdated Ubuntu versions.
+
 ## v6.0.1 (2025-03-09)
 
 ### Bugfixes
