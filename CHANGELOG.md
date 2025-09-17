@@ -1,5 +1,9 @@
 # Changelog
 
+## v6.2.0 (2025-09-18)
+
+Added support for basic video card configuration.
+
 ## v6.1.0 (2025-08-23)
 
 Added support for more recent Ubuntu versions (22.04, 24.04, 25.04), dropped support for outdated Ubuntu versions.

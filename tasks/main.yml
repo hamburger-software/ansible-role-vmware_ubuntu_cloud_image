@@ -43,6 +43,24 @@
     state: present
   delegate_to: localhost
 
+- name: Configure video card settings
+  tags: configure-vm
+  community.vmware.vmware_guest_video:
+    hostname: "{{ vcenter_hostname | default(omit) }}"
+    username: "{{ vcenter_username | default(omit) }}"
+    password: "{{ vcenter_password | default(omit) }}"
+    validate_certs: "{{ vcenter_validate_certs | default(omit) }}"
+    datacenter: "{{ vmware_datacenter }}"
+    name: "{{ vm_guestname }}"
+    gather_video_facts: "{{ video_card.gather_video_facts | default(false) }}"
+    use_auto_detect: "{{ video_card.use_auto_detect | default(false) }}"
+    display_number: "{{ video_card.display_number | default(1) }}"
+    video_memory_mb: "{{ video_card.video_memory_mb | default(omit) }}"
+    enable_3D: "{{ video_card.enable_3D | default(omit) }}"
+    renderer_3D: "{{ video_card.renderer_3D | default(omit) }}"
+    memory_3D_mb: "{{ video_card.memory_3D_mb | default(omit) }}"
+  delegate_to: localhost
+
 - name: Configure disks
   tags: configure-vm
   community.vmware.vmware_guest_disk:

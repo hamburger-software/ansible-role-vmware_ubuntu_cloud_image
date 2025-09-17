@@ -18,6 +18,7 @@ This role adds support for these features.
 - Sets the hostname.
 - Adds one or more ssh public keys and/or a password for the default user "ubuntu" so that Ansible can connect to the new machine.
 - Optionally adjusts the hardware, e.g. number of CPUs or memory, see [vmware_guest](https://docs.ansible.com/ansible/latest/collections/community/vmware/vmware_guest_module.html#parameters) for possible customizations.
+- Optionally adjusts the video card configuration (memory, 3D accelleration) see [vmware_guest_video](https://docs.ansible.com/ansible/latest/collections/community/vmware/vmware_guest_video_module.html#parameters) for details (not all parameters are supported).
 - Optionally sets VM notes (annotations), VM [configuration file parameters](https://techdocs.broadcom.com/us/en/vmware-cis/vsphere/vsphere/7-0/edit-virtual-machine-configuration-file-parameters.html) and/or VM custom attributes.
 - Disk size may be increased (defaults to 10GB), additional disks may be created and added.
 - Optionally changes the dynamic IP address to a static one (taken either from the playbook or from DNS).
@@ -92,6 +93,7 @@ Role Variables
 - Use `password` to set a password for the user "ubuntu".
   At least one of `ssh_keys` and `password` has to be specified so that Ansible can connect to the new machine.
 - The hardware can be specified with `hardware`, containing a dictionary as specified in [vmware_guest](https://docs.ansible.com/ansible/latest/collections/community/vmware/vmware_guest_module.html#parameters).
+- The video card configuration can be specified with `video_card`, containing a dictionary as specified in [vmware_guest_video](https://docs.ansible.com/ansible/latest/collections/community/vmware/vmware_guest_video_module.html#parameters). Supported parameters: `video_memory_mb`, `enable_3D`, `renderer_3D`, `memory_3D_mb`.
 - Disk size may be adjusted with `disk`. This parameter accepts a list of disk specifications as documented in [vmware_guest_disk](https://docs.ansible.com/ansible/latest/collections/community/vmware/vmware_guest_disk_module.html#parameters).
   The first disk corresponds to the imported virtual disk. Its size may only be increased.
   See the example playbook below for usage.
@@ -144,15 +146,13 @@ playbook:
             vmware_datacenter: your-datacenter
             vmware_datastore: your-datastore
             vmware_folder: your-datacenter/vm/some-folder
-            ova_file: ubuntu-20.04-server-cloudimg-amd64.ova
+            ova_file: ubuntu-24.04-server-cloudimg-amd64.ova
             hardware:
               num_cpus: 4
               memory_mb: 2048
+            video_card:
+              video_memory_mb: 32
             annotation: 'sample VM based on Ubuntu Cloud Image'
-            # this avoids excessive syslog messages from multipathd under Ubuntu 20.04
-            advanced_settings:
-              - key: disk.EnableUUID
-                value: 'TRUE'
             customvalues:
               - key: 'yourkey'
                 value: 'yourvalue'
