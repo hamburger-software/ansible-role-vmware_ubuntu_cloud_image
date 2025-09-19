@@ -42,6 +42,7 @@
     customvalues: "{{ customvalues | default(omit) }}"
     advanced_settings: "{{ advanced_settings | default(omit) }}"
     state: present
+  register: configure_result
   delegate_to: localhost
 
 - name: Configure video card settings
@@ -62,6 +63,7 @@
     renderer_3D: "{{ video_card.renderer_3D | default(omit) }}"
     memory_3D_mb: "{{ video_card.memory_3D_mb | default(omit) }}"
   delegate_to: localhost
+  when: configure_result.instance.hw_power_status == "poweredOff"
 
 - name: Configure disks
   tags: configure-vm
