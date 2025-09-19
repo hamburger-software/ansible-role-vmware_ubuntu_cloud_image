@@ -1,5 +1,14 @@
 # Changelog
 
+## v6.2.1 (2025-09-19)
+
+### Bugfixes
+
+Configuring video settings is skipped for running VMs.
+
+This fixes a regression introduced in v6.0.2:
+Running the role against a powered-on VM would fail with "VM state should be poweredoff to reconfigure video card settings."
+
 ## v6.2.0 (2025-09-18)
 
 Added support for basic video card configuration.
