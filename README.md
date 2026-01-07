@@ -97,7 +97,7 @@ Role Variables
 - Disk size may be adjusted with `disk`. This parameter accepts a list of disk specifications as documented in [vmware_guest_disk](https://docs.ansible.com/ansible/latest/collections/community/vmware/vmware_guest_disk_module.html#parameters).
   The first disk corresponds to the imported virtual disk. Its size may only be increased.
   See the example playbook below for usage.
-- User defined network mappings can be specified with `networks`, see [vmware_deploy_ovf](https://docs.ansible.com/ansible/latest/collections/community/vmware/vmware_deploy_ovf_module.html#parameters) for semantics.
+- User defined network mappings can be specified with `vmware_networks`, see [vmware_deploy_ovf](https://docs.ansible.com/ansible/latest/collections/community/vmware/vmware_deploy_ovf_module.html#parameters) for semantics.
 - VM notes can be set with `annotation`.  
   To use this feature, the VMware permission `Virtual Machine > Configuration > Set annotation` is required.
 - To set VM configuration file parameters, supply `advanced_settings` with a list of dicts as shown in the example playbook. 
